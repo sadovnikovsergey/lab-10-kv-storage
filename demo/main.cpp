@@ -46,6 +46,16 @@ int main([[maybe_unused]]int argc, [[maybe_unused]]char** argv) {
 
 //    MESSAGE_LOG(arguments.logLevel) << "Done!\n";
     dbEditor editor("../db", arguments);
-    //editor.showAllTables("../result");
-    editor.hashDataBaseInit();
+    editor.showAllTables("../db");
+//    editor.addValue("default","key1","value1");
+//    editor.addValue("default","key2","value2");
+//    editor.addValue("default","key3","value3");
+//    editor.createTable("notdefault");
+//    editor.addValue("notdefault","key1","value1");
+//    editor.addValue("notdefault","key2","value2");
+//    editor.addValue("notdefault","key3","value3");
+//    editor.hashDataBaseInit();
+    editor.showAllTables("../result");
+
+
 }

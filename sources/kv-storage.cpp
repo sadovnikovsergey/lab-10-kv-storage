@@ -3,16 +3,12 @@
 #include <stdexcept>
 #include <kv-storage.hpp>
 
-dbEditor::dbEditor(std::string path, Arguments _arguments) {
-  this->db_path = path;
+dbEditor::dbEditor(std::string path, Arguments _arguments) : arguments(_arguments), db_path(path){
   this->options.create_if_missing = true;
   this->options.create_missing_column_families = true;
   this->options.keep_log_file_num = 1;
   this->options.info_log_level = ::rocksdb::InfoLogLevel::FATAL_LEVEL;
   this->options.recycle_log_file_num = 1;
-  this->arguments.logLevel = _arguments.logLevel;
-  this->arguments.output = _arguments.output;
-  this->arguments.threadCount = _arguments.threadCount;
 
   DB* db;
   Status status;
@@ -93,7 +89,8 @@ std::vector<ColumnFamilyDescriptor>* dbEditor::getTables(std::string path) {
   return column_families;
 }
 
-void CleanUp(std::vector<ColumnFamilyHandle*>& handles, std::vector<ColumnFamilyDescriptor>* column_families, DB* db) {
+void CleanUp(std::vector<ColumnFamilyHandle*>& handles,
+             std::vector<ColumnFamilyDescriptor>* column_families, DB* db) {
   for (auto handle : handles)
   {
     db->DestroyColumnFamilyHandle(handle);
