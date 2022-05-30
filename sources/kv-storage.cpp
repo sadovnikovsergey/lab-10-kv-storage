@@ -3,7 +3,8 @@
 #include <stdexcept>
 #include <kv-storage.hpp>
 
-dbEditor::dbEditor(std::string path, Arguments _arguments) : arguments(_arguments), db_path(path){
+dbEditor::dbEditor(std::string path,
+                   Arguments _arguments) :arguments(_arguments), db_path(path){
   this->options.create_if_missing = true;
   this->options.create_missing_column_families = true;
   this->options.keep_log_file_num = 1;
